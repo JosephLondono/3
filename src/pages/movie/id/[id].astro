@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import SkeletonMovie from '../../../components/sketeletonMovie.astro';
+import Slider from '../../../components/slider.astro';
 
 const { id } = Astro.params
 
@@ -9,6 +10,8 @@ const { id } = Astro.params
 <Layout title="Post">
     <main class="grid place-content-center mx-auto my-10">
         <SkeletonMovie id={id}/>
+
+        <Slider id={id}/>
     </main>
 
 </Layout>

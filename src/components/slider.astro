@@ -1,0 +1,35 @@
+---
+import { getVideosById } from '../services/api';
+import Videos from '../components/videos.astro';
+
+interface Props {
+    id: string;
+}
+
+const { id } = Astro.props;
+
+
+const data = await getVideosById(id);
+
+console.log(data);
+
+
+
+---
+
+
+
+<h2>Videos</h2>
+
+
+
+
+    <div class="">
+        {
+            data.map((video) => (
+                <Videos key={video.key} client:visible/>
+            ))
+        }
+        
+        
+    </div>
