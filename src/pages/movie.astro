@@ -6,10 +6,10 @@ import Header from '../components/header.astro';
 import Numberpages from '../components/Numberpages.astro';
 import Footer from '../components/footer.astro';
 
+
 let page = Astro.url.searchParams.get('page');
 (page == null) ? page = "1" : page = page;
 console.log(page);
-
 
 if(parseInt(page) <= 0 || parseInt(page) > 500) return Astro.redirect('/404');
 
