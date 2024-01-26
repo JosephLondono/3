@@ -9,6 +9,9 @@ const { key } = Astro.props;
 console.log(key);
 
 ---
-<p>{key}</p>
 
-<iframe width="560" height="315" src=`https://www.youtube.com/embed/${key}` title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<div class="snap-center shrink-0 w-4/5 rounded overflow-hidden shadow-lg">
+    <iframe width="560" height="315" src=`https://www.youtube.com/embed/${key}` title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+

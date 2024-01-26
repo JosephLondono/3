@@ -13,7 +13,7 @@ const data = await getVideosById(id);
 
 console.log(data);
 
-
+let cont = 0;
 
 ---
 
@@ -21,15 +21,12 @@ console.log(data);
 
 <h2>Videos</h2>
 
-
-
-
-    <div class="">
-        {
-            data.map((video) => (
-                <Videos key={video.key} client:visible/>
-            ))
-        }
-        
-        
-    </div>
+<section class="snap-mandatory snap-x flex gap-4 w-1/2 overflow-x-auto">
+    
+    {
+        data.map((video) => (
+            cont++,
+            (cont < 7) ? <Videos key={video.key} client:visible/> : ""
+        ))
+    }
+</section>
