@@ -1,0 +1,47 @@
+---
+import SearchMovieById from '../components/searchMovieById.astro';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/header.astro';
+
+
+---
+
+<Layout title="Movie App.">
+	<Header />
+	<main class= { "grid justify-items-center gap-5" }>
+		<h1 class={ "text-4xl" }>Welcome to <span class="text-gradient">Movies Info</span></h1>
+		<article>
+			<section>
+				<h2 class={ "text-3xl" }>Movies</h2>
+			</section>
+			<section>
+				<h2 class={ "text-3xl" }>Series</h2>
+			</section>
+			<section>
+				<h2 class={ "text-3xl" }>Personas</h2>
+			</section>
+		</article>
+	</main>
+
+
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 100%;
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+		font-weight: bold;
+	}
+</style>
