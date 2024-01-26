@@ -26,7 +26,7 @@ let cont = 0;
     {
         data.map((video) => (
             cont++,
-            (cont < 7) ? <Videos key={video.key} client:visible/> : ""
+            (cont < 7) ? <Videos key={video.key}/> : ""
         ))
     }
 </section>
