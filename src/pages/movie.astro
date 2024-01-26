@@ -1,5 +1,5 @@
 ---
-import SearchMovieById from '../components/searchMovieById.astro';
+import MovieTarget from '../components/MovieTarget.astro';
 import Layout from '../layouts/Layout.astro';
 import { getMovies } from '../services/api.tsx';
 import Header from '../components/header.astro';
@@ -16,7 +16,7 @@ if(parseInt(page) <= 0 || parseInt(page) > 500) return Astro.redirect('/404');
 
 const data = await getMovies(page);
 
-
+console.log(data)
 
 export const prerender = true;
 
@@ -30,7 +30,7 @@ export const prerender = true;
 		<section class={ "grid gap-7 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" }>
 			{	
 				data.map((movie) => (
-					<SearchMovieById id={ movie.id } adult={ movie.adult }/>
+					<MovieTarget title={ movie.title } date={ movie.release_date } poster_path={movie.poster_path} adult={movie.adult}/>
 				))
 			}
 		</section>
