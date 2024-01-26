@@ -27,24 +27,24 @@ const unselect = "relative inline-flex items-center px-4 py-2 text-sm font-semib
             </div>
             <div>
                 <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-                    <a href={ (parseInt(page) != 1) ? `/movie?page=${parseInt(page) - 1}` : `/movie` } class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-600 ring-1 ring-inset ring-gray-700 hover:bg-gray-800 focus:z-20 focus:outline-offset-0">
+                    <a href={ (parseInt(page) != 1) ? `/movie/index.html?page=${parseInt(page) - 1}` : `/movie` } class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-600 ring-1 ring-inset ring-gray-700 hover:bg-gray-800 focus:z-20 focus:outline-offset-0">
                         <span class="sr-only">Previous</span>
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
                         </svg>
                     </a>
-                    <a href="/movie" class= { (page == "1") ? select : unselect }>1</a>
+                    <a href="/movie/index.html" class= { (page == "1") ? select : unselect }>1</a>
 
-                    <a href="/movie?page=2" aria-current="page" class={ (page == "2") ? select : unselect }>2</a>
-                    <a href="/movie?page=3" aria-current="page" class={ (page == "3") ? select : unselect }>3</a>
-                    <a href="/movie?page=4" aria-current="page" class={ (page == "4") ? select : unselect }>3</a>
-                    <a href="/movie?page=5" aria-current="page" class={ (page == "5") ? select : unselect }>5</a>
+                    <a href="/movie/index.html?page=2" aria-current="page" class={ (page == "2") ? select : unselect }>2</a>
+                    <a href="/movie/index.html?page=3" aria-current="page" class={ (page == "3") ? select : unselect }>3</a>
+                    <a href="/movie/index.html?page=4" aria-current="page" class={ (page == "4") ? select : unselect }>3</a>
+                    <a href="/movie/index.html?page=5" aria-current="page" class={ (page == "5") ? select : unselect }>5</a>
                     <span class= { (parseInt(page) > 5 && parseInt(page) < 498) ? select : unselect }>....</span>
-                    <a href="/movie?page=498" aria-current="page" class={ (page == "498") ? select : unselect }>498</a>
-                    <a href="/movie?page=499" aria-current="page" class={ (page == "499") ? select : unselect }>499</a>
-                    <a href="/movie?page=500" aria-current="page" class={ (page == "500") ? select : unselect }>500</a>
+                    <a href="/movie/index.html?page=498" aria-current="page" class={ (page == "498") ? select : unselect }>498</a>
+                    <a href="/movie/index.html?page=499" aria-current="page" class={ (page == "499") ? select : unselect }>499</a>
+                    <a href="/movie/index.html?page=500" aria-current="page" class={ (page == "500") ? select : unselect }>500</a>
 
-                        <a href={`/movie?page=${1+ parseInt(page)}`} class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-600 ring-1 ring-inset ring-gray-700 hover:bg-gray-800 focus:z-20 focus:outline-offset-0">
+                        <a href={ (parseInt(page) != 500) ? `/movie/index.html?page=${parseInt(page) + 1}` : `/movie/index.html?page=500` } class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-600 ring-1 ring-inset ring-gray-700 hover:bg-gray-800 focus:z-20 focus:outline-offset-0">
                         <span class="sr-only">Next</span>
                         <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
