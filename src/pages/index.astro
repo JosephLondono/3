@@ -1,38 +1,61 @@
 ---
 import MovieTarget from '../components/MovieTarget.astro';
+import TvTarget from "../components/tvTarget.astro";
 import Layout from '../layouts/Layout.astro';
-import { getMovies } from "../services/api";
+import { getMovies, getTv } from "../services/api";
 
-const data = await getMovies("1");
-console.log(data);
+const dataMovies = await getMovies("1");
+const dataTv = await getTv("1");
 
-let cont = 0;
+
+let contMovie = 0;
+let contTv = 0;
+let contPerson = 0;
+
 ---
 
 <Layout title="Movie App.">
 	<main class= { "grid justify-items-center gap-5" }>
 		<h1 class={ "text-4xl" }>Welcome to <span class="text-gradient">Movies Info</span></h1>
-		<article class={ "flex gap-56" } > 
+		<article class={ "flex gap-7" } > 
 			<section class={ "grid justify-items-center" }>
 				<h2 class={ "text-3xl text-center" }>Movies</h2>
 				<div class={ "grid grid-cols-2 gap-8 mt-6 mb-4" }>
 					{
-						data.map((movie) => (
-							cont++,
-							(cont < 5) ? <MovieTarget title={ movie.title } date={ movie.release_date } poster_path={movie.	poster_path} adult={movie.adult} id={movie.id}/> : null
+						dataMovies.map((movie) => (
+							contMovie++,
+							(contMovie < 5) ? <MovieTarget title={ movie.title } date={ movie.release_date } poster_path={movie.	poster_path} adult={movie.adult} id={movie.id}/> : null
 						))
 					}
 				</div>
-				<button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
-					<span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-					Ver Mas
-					</span>
-				</button>
+				<a href="/movie">
+					<button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800" onclick="irMovie">
+						<span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+						Ver Mas
+						</span>
+					</button>
+					
+				</a>
 			</section>
-			<section>
-				<h2 class={ "text-3xl" }>Series</h2>
+			<section class={ "grid justify-items-center" }>
+				<h2 class={ "text-3xl text-center" }>Tv</h2>
+				<div class={ "grid grid-cols-2 gap-8 mt-6 mb-4" }>
+					{
+						dataTv.map((tv) => (
+							contTv++,
+							(contTv < 5) ? <TvTarget title={ tv.name } date={ tv.first_air_date } poster_path={tv.poster_path} adult={tv.adult} id={tv.id}/> : null
+						))
+					}
+				</div>
+				<a href="/tv/">
+					<button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+						<span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+						Ver Mas
+						</span>
+					</button>
+					
+				</a>
 			</section>
-			<section>
 				<h2 class={ "text-3xl" }>Personas</h2>
 			</section>
 		</article>
@@ -40,6 +63,8 @@ let cont = 0;
 
 
 </Layout>
+
+
 
 <style>
 	main {

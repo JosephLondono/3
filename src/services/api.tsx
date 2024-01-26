@@ -23,9 +23,9 @@ export async function getMovieById(id: string) {
     };
     
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=es-US`, options);
-    const informacionPelicula = await response.json().catch(err => console.error(err));
+    const infoMovie = await response.json().catch(err => console.error(err));
 
-    return informacionPelicula;
+    return infoMovie;
 }
 
 export async function getVideosById(id: string) {
@@ -39,7 +39,22 @@ export async function getVideosById(id: string) {
     
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos`, options);
     const { results } = await response.json().catch(err => console.error(err));
-    console.log(results)
+
+    return results;
+} 
+
+export async function getTv(id: string) {
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: import.meta.env.Authorization
+        }
+    };
+    
+    const response = await fetch(`https://api.themoviedb.org/3/tv/popular?language=es-US&page=1`, options);
+    const { results } = await response.json().catch(err => console.error(err));
+    console.log(results);
 
     return results;
 } 
