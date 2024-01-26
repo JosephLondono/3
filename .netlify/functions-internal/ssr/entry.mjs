@@ -1,6 +1,6 @@
 import * as adapter from '@astrojs/netlify/ssr-function.js';
 import { renderers } from './renderers.mjs';
-import { manifest } from './manifest_3frzh9QU.mjs';
+import { manifest } from './manifest_xZwT6W--.mjs';
 
 const _page0  = () => import('./chunks/generic_zLUfhxLw.mjs');
 const _page1  = () => import('./chunks/index_IheRucL3.mjs');
