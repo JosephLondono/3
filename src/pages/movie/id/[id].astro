@@ -1,0 +1,14 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SkeletonMovie from '../../../components/sketeletonMovie.astro';
+
+const { id } = Astro.params
+
+---
+
+<Layout title="Post">
+    <main class="grid place-content-center mx-auto my-10">
+        <SkeletonMovie id={id}/>
+    </main>
+
+</Layout>

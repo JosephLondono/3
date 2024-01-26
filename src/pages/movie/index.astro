@@ -1,10 +1,10 @@
 ---
-import MovieTarget from '../components/MovieTarget.astro';
-import Layout from '../layouts/Layout.astro';
-import { getMovies } from '../services/api.tsx';
-import Header from '../components/header.astro';
-import Numberpages from '../components/Numberpages.astro';
-import Footer from '../components/footer.astro';
+import MovieTarget from '../../components/MovieTarget.astro';
+import Layout from '../../layouts/Layout.astro';
+import { getMovies } from '../../services/api';
+import Header from '../../components/header.astro';
+import Numberpages from '../../components/Numberpages.astro';
+import Footer from '../../components/footer.astro';
 
 
 let page = Astro.url.searchParams.get('page');
@@ -23,14 +23,13 @@ export const prerender = true;
 ---
 
 <Layout title="Movies | Movie Info">
-	<Header />
 	<main class= { "grid justify-items-center gap-5" }>
 		<h1 class={ "text-4xl" }>Welcome to <span class="text-gradient">Movies Info</span></h1>
 		<h2 class={ "text-3xl" }>Movies</h2>
 		<section class={ "grid gap-7 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" }>
 			{	
 				data.map((movie) => (
-					<MovieTarget title={ movie.title } date={ movie.release_date } poster_path={movie.poster_path} adult={movie.adult}/>
+					<MovieTarget title={ movie.title } date={ movie.release_date } poster_path={movie.poster_path} adult={movie.adult} id={movie.id}/>
 				))
 			}
 		</section>
@@ -38,7 +37,6 @@ export const prerender = true;
 
 	<Numberpages page={page}/>
 
-    <Footer/>
 </Layout>
 
 <style>
