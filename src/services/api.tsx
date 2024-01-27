@@ -9,6 +9,7 @@ const options = {
 
 const response = await fetch(`https://api.themoviedb.org/3/movie/popular?language=es-US&page=${page}`, options);
 const { results } = await response.json();
+console.log(results);
 
 return results;
 }
@@ -70,7 +71,6 @@ export async function getPerson(page: string) {
     
     const response = await fetch(`https://api.themoviedb.org/3/person/popular?language=es-US&page=${page}`, options);
     const { results } = await response.json().catch(err => console.error(err));
-    console.log(results);
 
     return results;
 } 
