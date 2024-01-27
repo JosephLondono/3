@@ -10,7 +10,7 @@ const data = await getMovieById(id)
 
 ---
 
-<Layout title=`${data.title} | Movie Info`>
+<Layout title=`${data.title} | Movie Info` description=`Ver la informacion sobre la pelicula ${data.title}`>
     <main class="grid mx-auto my-10 justify-items-center gap-9">
         <SkeletonMovie id={id}/>
 

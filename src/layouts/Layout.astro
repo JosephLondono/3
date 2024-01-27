@@ -6,22 +6,24 @@ import { ViewTransitions, slide } from 'astro:transitions';
 
 interface Props {
 	title: string;
+	description: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 
 
 
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es"> 
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content={ description } />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="robots" content="index, follow" />
 		<ViewTransitions />
 		<title>{title}</title>
 	</head>
