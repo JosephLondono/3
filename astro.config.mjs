@@ -7,5 +7,6 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   output: 'server',
   integrations: [tailwind()],
-  adapter: netlify()
+  adapter: netlify(),
+  prefetch: true
 });
