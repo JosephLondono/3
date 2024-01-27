@@ -14,7 +14,7 @@ const data = await getMovieById(id)
 title=`${data.title} | Movie Info` 
 description=`Ver la informacion sobre la pelicula ${data.title}`
 metaImage=`https://image.tmdb.org/t/p/original/${data.backdrop_path}`
-metaImageAlt="Pagina Principal de peliculas populares"
+metaImageAlt=`${data.title}`
 >
     <main class="grid mx-auto my-10 justify-items-center gap-9">
         <SkeletonMovie id={id}/>

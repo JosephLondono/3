@@ -2,14 +2,15 @@
 
 interface Props {
     key: string;
+    cantidad: number;
 }
 
-const { key } = Astro.props;
+const { key, cantidad } = Astro.props;
 
 
 ---
 
-<div class="snap-center shrink-0 w-4/5 rounded overflow-hidden shadow-lg">
+<div class={(cantidad == 1) ? `snap-center shrink-0 rounded overflow-hidden shadow-lg w-full` : `snap-center shrink-0 w-4/5 rounded overflow-hidden shadow-lg` }>
     <lite-youtube 
         class=""
         videoid=`${key}`

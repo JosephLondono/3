@@ -11,6 +11,15 @@ const { id } = Astro.props;
 
 const data = await getVideosById(id);
 
+const cantidadPeliculas = data.length;
+
+let cantidad = 0;
+
+if (cantidadPeliculas == 1) {
+    cantidad = 1
+} else {
+    cantidad = 7
+}
 
 let cont = 0;
 
@@ -25,7 +34,7 @@ let cont = 0;
     {
         data.map((video) => (
             cont++,
-            (cont < 7) ? <Videos key={video.key}/> : null
+            (cont < cantidad+1 ) ? <Videos key={video.key} cantidad={cantidad}/> : null
         ))
     }
 </section>
