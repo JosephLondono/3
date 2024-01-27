@@ -1,11 +1,11 @@
 import * as adapter from '@astrojs/netlify/ssr-function.js';
 import { renderers } from './renderers.mjs';
-import { manifest } from './manifest_lKySmE4s.mjs';
+import { manifest } from './manifest_D1_-I-x1.mjs';
 
-const _page0  = () => import('./chunks/generic_mAeoySbS.mjs');
-const _page1  = () => import('./chunks/_id__H769ygdl.mjs');
-const _page2  = () => import('./chunks/index_ltB7iQgW.mjs');
-const _page3  = () => import('./chunks/index_BSYFwi17.mjs');const pageMap = new Map([["node_modules/astro/dist/assets/endpoint/generic.js", _page0],["src/pages/movie/id/[id].astro", _page1],["src/pages/movie/index.astro", _page2],["src/pages/index.astro", _page3]]);
+const _page0  = () => import('./chunks/generic_TTjMN8Ys.mjs');
+const _page1  = () => import('./chunks/_id__Q3W3SIBH.mjs');
+const _page2  = () => import('./chunks/index_QMv0fM3h.mjs');
+const _page3  = () => import('./chunks/index_mfgRiv0K.mjs');const pageMap = new Map([["node_modules/astro/dist/assets/endpoint/generic.js", _page0],["src/pages/movie/id/[id].astro", _page1],["src/pages/movie/index.astro", _page2],["src/pages/index.astro", _page3]]);
 const _manifest = Object.assign(manifest, {
 	pageMap,
 	renderers,

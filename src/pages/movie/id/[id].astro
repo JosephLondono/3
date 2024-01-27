@@ -4,11 +4,11 @@ import SkeletonMovie from '../../../components/sketeletonMovie.astro';
 import Slider from '../../../components/slider.astro';
 import { getMovieById } from '../../../services/api';
 
-export const prerender = true;
+export const prerender = false
 
 const { id } = Astro.params
 
-const data = await getMovieById(id);
+const data = await getMovieById(id)
 
 ---
 
