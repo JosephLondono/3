@@ -10,7 +10,12 @@ const data = await getMovieById(id)
 
 ---
 
-<Layout title=`${data.title} | Movie Info` description=`Ver la informacion sobre la pelicula ${data.title}`>
+<Layout 
+title=`${data.title} | Movie Info` 
+description=`Ver la informacion sobre la pelicula ${data.title}`
+metaImage=`https://image.tmdb.org/t/p/original/${data.backdrop_path}`
+metaImageAlt="Pagina Principal de peliculas populares"
+>
     <main class="grid mx-auto my-10 justify-items-center gap-9">
         <SkeletonMovie id={id}/>
 
