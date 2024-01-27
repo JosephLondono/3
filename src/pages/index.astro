@@ -5,7 +5,7 @@ import TvTarget from "../components/tvTarget.astro";
 import Layout from '../layouts/Layout.astro';
 import { getMovies, getTv, getPerson } from "../services/api";
 
-export const prerender = false
+export const prerender = true
 
 const dataMovies = await getMovies("1");
 const dataTv = await getTv("1");
