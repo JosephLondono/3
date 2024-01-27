@@ -9,7 +9,6 @@ interface Props {
 const { id } = Astro.props;
 
 const movie = await getMovieById(id);
-console.log(movie);
 
 const rating = Math.round(movie.vote_average * 10);
 
