@@ -2,12 +2,15 @@
 import Layout from '../../../layouts/Layout.astro';
 import SkeletonMovie from '../../../components/sketeletonMovie.astro';
 import Slider from '../../../components/slider.astro';
+import { getMovieById } from '../../../services/api';
 
 const { id } = Astro.params
 
+const data = await getMovieById(id)
+
 ---
 
-<Layout title="Post">
+<Layout title=`${data.title} | Movie Info`>
     <main class="grid mx-auto my-10 justify-items-center gap-9">
         <SkeletonMovie id={id}/>
 
