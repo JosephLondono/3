@@ -14,7 +14,7 @@ if(parseInt(page) <= 0 || parseInt(page) > 500) return Astro.redirect('/404');
 
 const data = await getMovies(page);
 
-console.log(data)
+console.log(data);
 
 export const prerender = true;
 

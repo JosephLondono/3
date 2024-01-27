@@ -40,6 +40,7 @@ export async function getVideosById(id: string) {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos`, options);
     const { results } = await response.json().catch(err => console.error(err));
 
+    console.log(results);
     return results;
 } 
 
@@ -54,7 +55,6 @@ export async function getTv(page: string) {
     
     const response = await fetch(`https://api.themoviedb.org/3/tv/popular?language=es-US&page${page}1`, options);
     const { results } = await response.json().catch(err => console.error(err));
-    console.log(results);
 
     return results;
 } 
