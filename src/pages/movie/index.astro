@@ -1,5 +1,5 @@
 ---
-export const prerender = true;
+export const prerender = false;
 
 import MovieTarget from '../../components/MovieTarget.astro';
 import Layout from '../../layouts/Layout.astro';
@@ -17,6 +17,7 @@ if(parseInt(page) <= 0 || parseInt(page) > 500) return Astro.redirect('/404');
 const data = await getMovies(page);
 
 console.log(data);
+
 
 
 ---
