@@ -10,7 +10,7 @@ const { key, cantidad } = Astro.props;
 
 ---
 
-<div class={(cantidad == 1) ? `snap-center shrink-0 rounded overflow-hidden shadow-lg w-full` : `snap-center shrink-0 w-4/5 rounded overflow-hidden shadow-lg` }>
+<div class={(cantidad == 1) ? `snap-center shrink-0 rounded-xl overflow-hidden shadow-lg w-full` : `snap-center shrink-0 w-4/5 overflow-hidden shadow-lg rounded-xl` }>
     <lite-youtube 
         class=""
         videoid=`${key}`
