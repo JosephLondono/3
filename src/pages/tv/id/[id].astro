@@ -15,10 +15,10 @@ const data = await getTvById(id);
 ---
 
 <Layout 
-title=` | Movie Info` 
-description=`Ver la informacion sobre la pelicula `
-metaImage=`https://image.tmdb.org/t/p/original/`
-metaImageAlt=``
+title=`${data.name} | Movie Info` 
+description=`Ver la informacion sobre la serie ${data.name}`
+metaImage=``
+metaImageAlt=`${data.name}`
 >
     <main class="grid mx-auto my-10 justify-items-center gap-9">
         <SkeletonTv id={id}/>

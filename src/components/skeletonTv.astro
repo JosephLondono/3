@@ -26,7 +26,6 @@ if (rating >= 70) {
     color = "#EF4444"
 }
 
-console.log(tv.name)
 
 ---
 
@@ -39,6 +38,7 @@ console.log(tv.name)
     
     <div class="flex flex-col justify-between p-4 leading-normal">
         <h5 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{tv.name}</h5>
+        <span class="text-sm text-white/60 -mt-1 mb-3">{tv.first_air_date}</span>
         <div class="flex gap-0">
         { tv.genres.map((genre) => (
             <Genres genres={genre.name} />
