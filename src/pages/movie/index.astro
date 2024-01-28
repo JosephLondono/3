@@ -30,7 +30,7 @@ metaImageAlt="Pagina Principal de peliculas populares"
 >
 	<main class= { "grid justify-items-center gap-5" }>
 		<h2 class={ "text-3xl" }>Peliculas</h2>
-		<section class={ "grid gap-7 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" }>
+		<section class={ "grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" }>
 			{	
 				data.map((movie) => (
 					<MovieTarget title={ movie.title } date={ movie.release_date } poster_path={movie.poster_path} adult={movie.adult} id={movie.id}/>
