@@ -1,0 +1,42 @@
+---
+import { getVideosByIdMovie } from '../services/api';
+import Videos from './videos.astro';
+
+interface Props {
+    id: string;
+}
+
+const { id } = Astro.props;
+
+
+const data = await getVideosByIdMovie(id);
+
+const cantidadPeliculas = data.length;
+
+let cantidad = 0;
+
+if (cantidadPeliculas == 1) {
+    cantidad = 1
+} else {
+    cantidad = 7
+}
+
+let cont = 0;
+
+---
+
+{
+    (cantidadPeliculas == 0) ? <h2 class="text-white">No hay videos disponibles</h2> : <h2>Videos</h2>
+}
+
+{
+    (cantidadPeliculas == 0) ? null : <section class="snap-mandatory snap-x flex gap-4 overflow-x-auto w-11/12 md:w-9/12 lg:w-8/12">
+        
+        {
+            data.map((video) => (
+                cont++,
+                (cont < cantidad+1 ) ? <Videos key={video.key} cantidad={cantidad}/> : null
+            ))
+        }
+    </section>
+}

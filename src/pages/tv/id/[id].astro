@@ -1,0 +1,29 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SkeletonTv from '../../../components/skeletonTv.astro';
+import SliderTv from '../../../components/sliderTv.astro';
+import { getTvById } from '../../../services/api';
+
+export const prerender = false
+
+const { id } = Astro.params
+
+
+const data = await getTvById(id);
+
+
+---
+
+<Layout 
+title=` | Movie Info` 
+description=`Ver la informacion sobre la pelicula `
+metaImage=`https://image.tmdb.org/t/p/original/`
+metaImageAlt=``
+>
+    <main class="grid mx-auto my-10 justify-items-center gap-9">
+        <SkeletonTv id={id}/>
+
+        <SliderTv id={data.id}/>
+    </main>
+
+</Layout>

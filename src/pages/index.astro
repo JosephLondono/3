@@ -52,7 +52,7 @@ metaImageAlt="Pagina Principal de Movies Info"
 					{
 						dataTv.map((tv) => (
 							contTv++,
-							(contTv < 5) ? <TvTarget title={ tv.name } date={ tv.first_air_date } poster_path={tv.poster_path} adult={tv.adult} id={tv.id}/> : null
+							(contTv < 5) ? <TvTarget name={ tv.name } first_air_date={ tv.first_air_date } poster_path={tv.poster_path} adult={tv.adult} id={tv.id}/> : null
 						))
 					}
 				</div>

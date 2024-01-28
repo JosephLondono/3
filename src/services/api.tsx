@@ -29,7 +29,7 @@ export async function getMovieById(id: string) {
     return infoMovie;
 }
 
-export async function getVideosById(id: string) {
+export async function getVideosByIdMovie(id: string) {
     const options = {
         method: 'GET',
         headers: {
@@ -56,6 +56,7 @@ export async function getTv(page: string) {
     
     const response = await fetch(`https://api.themoviedb.org/3/tv/popular?language=es-US&page=${page}`, options);
     const { results } = await response.json().catch(err => console.error(err));
+    console.log(results);
 
     return results;
 } 
@@ -72,5 +73,39 @@ export async function getPerson(page: string) {
     const response = await fetch(`https://api.themoviedb.org/3/person/popular?language=es-US&page=${page}`, options);
     const { results } = await response.json().catch(err => console.error(err));
 
+    return results;
+} 
+
+
+export async function getTvById(id: string) {
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: import.meta.env.Authorization
+        }
+    };
+    
+    const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?language=es-US`, options);
+    const infoTv = await response.json().catch(err => console.error(err));
+
+    console.log(infoTv);
+
+    return infoTv;
+} 
+
+export async function getVideosByIdTv(id: string) {
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: import.meta.env.Authorization
+        }
+    };
+    
+    const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos`, options);
+    const { results } = await response.json().catch(err => console.error(err));
+
+    console.log(results);
     return results;
 } 

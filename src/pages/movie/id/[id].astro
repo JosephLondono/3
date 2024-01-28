@@ -1,7 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import SkeletonMovie from '../../../components/sketeletonMovie.astro';
-import Slider from '../../../components/slider.astro';
+import SliderMovie from '../../../components/sliderMovie.astro';
 import { getMovieById } from '../../../services/api';
 
 export const prerender = false
@@ -21,7 +21,7 @@ metaImageAlt=`${data.title}`
     <main class="grid mx-auto my-10 justify-items-center gap-9">
         <SkeletonMovie id={id}/>
 
-        <Slider id={id}/>
+        <SliderMovie id={id}/>
     </main>
 
 </Layout>
