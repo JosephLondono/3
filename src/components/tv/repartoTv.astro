@@ -1,0 +1,28 @@
+---
+import { getCastTv } from '../../services/api';
+import RepartoTarget from './repartoTarget.astro';
+
+interface Props {
+    id: string;
+}
+
+const { id } = Astro.props;
+
+const castTv = await getCastTv(id);
+
+console.log(castTv);
+
+---
+
+<article class="grid justify-items-center">
+    {(castTv.length == 0) ? <h2 class="text-lg font-semibold">No hay reparto disponible</h2> : <h2 class="text-lg font-semibold">Reparto</h2>}
+    
+    <section class="snap-mandatory snap-x flex gap-8 overflow-x-auto w-11/12 md:w-9/12 lg:w-8/12 mt-3">
+        {
+            castTv.map((actor) => {
+                return <RepartoTarget name={actor.name} id={actor.id} profile_path={actor.profile_path} job={actor.roles[0].character} total_episode_count={actor.total_episode_count}/>
+            })
+        }
+    </section>
+
+</article>

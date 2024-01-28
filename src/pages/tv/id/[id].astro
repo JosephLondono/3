@@ -3,6 +3,7 @@ import Layout from '../../../layouts/Layout.astro';
 import SkeletonTv from '../../../components/tv/skeletonTv.astro';
 import SliderTv from '../../../components/tv/sliderTv.astro';
 import { getTvById } from '../../../services/api';
+import RepartoTv from '../../../components/tv/repartoTv.astro';
 
 export const prerender = false
 
@@ -24,6 +25,8 @@ metaImageAlt=`${data.name}`
         <SkeletonTv id={id}/>
 
         <SliderTv id={data.id}/>
+
+        <RepartoTv id={data.id}/>
     </main>
 
 </Layout>

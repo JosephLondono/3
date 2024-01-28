@@ -105,7 +105,6 @@ export async function getVideosByIdTv(id: string) {
     const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos`, options);
     const { results } = await response.json().catch(err => console.error(err));
 
-    console.log(results);
     return results;
 } 
 
@@ -136,7 +135,6 @@ export async function getFunctionsByPerson(id: string) {
     
     const response = await fetch(`https://api.themoviedb.org/3/person/${id}/combined_credits?language=es-US`, options);
     const { cast } = await response.json().catch(err => console.error(err));
-    console.log(cast);
 
     return cast;
 }
@@ -153,6 +151,23 @@ export async function getCastMovie(id: string) {
     };
     
     const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=es-US`, options);
+    const { cast } = await response.json().catch(err => console.error(err));
+    console.log(cast);
+
+    return cast;
+}
+
+
+export async function getCastTv(id: string) {
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: import.meta.env.Authorization
+        }
+    };
+    
+    const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/aggregate_credits?language=es-US`, options);
     const { cast } = await response.json().catch(err => console.error(err));
     console.log(cast);
 
