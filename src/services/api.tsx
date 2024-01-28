@@ -54,7 +54,7 @@ export async function getTv(page: string) {
         }
     };
     
-    const response = await fetch(`https://api.themoviedb.org/3/tv/popular?language=es-US&page${page}1`, options);
+    const response = await fetch(`https://api.themoviedb.org/3/tv/popular?language=es-US&page=${page}`, options);
     const { results } = await response.json().catch(err => console.error(err));
 
     return results;

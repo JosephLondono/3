@@ -1,9 +1,9 @@
 ---
 export const prerender = false;
 
-import MovieTarget from '../../components/MovieTarget.astro';
+import TvTarget from '../../components/tvTarget.astro';
 import Layout from '../../layouts/Layout.astro';
-import { getMovies } from '../../services/api';
+import { getTv } from '../../services/api';
 import Numberpages from '../../components/Numberpages.astro';
 
 
@@ -14,32 +14,32 @@ console.log(page);
 if(parseInt(page) <= 0 || parseInt(page) > 500) return Astro.redirect('/404');
 
 
-const data = await getMovies(page);
+const data = await getTv(page);
 
 console.log(data);
 
-
+let option = "tv";
 
 ---
 
 <Layout 
-title="Peliculas Populares | Movie Info" 
-description="Ver todas las peliculas populares"
-metaImage="https://i.ibb.co/4YwJQw9/image.png"
-metaImageAlt="Pagina Principal de peliculas populares"
+title="Series de Tv Populares | Movie Info" 
+description="Ver todas las series de Tv populares"
+metaImage=""
+metaImageAlt="Pagina Principal de series populares"
 >
 	<main class= { "grid justify-items-center gap-5" }>
-		<h2 class={ "text-3xl" }>Peliculas</h2>
+		<h2 class={ "text-3xl" }>Series Tv</h2>
 		<section class={ "grid gap-7 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" }>
 			{	
 				data.map((movie) => (
-					<MovieTarget title={ movie.title } date={ movie.release_date } poster_path={movie.poster_path} adult={movie.adult} id={movie.id}/>
+					<TvTarget title={ movie.title } date={ movie.release_date } poster_path={movie.poster_path} adult={movie.adult} id={movie.id}/>
 				))
 			}
 		</section>
 	</main>
 
-	<Numberpages page={page} option='movie'/>
+	<Numberpages page={page} option={option}/>
 
 </Layout>
 
