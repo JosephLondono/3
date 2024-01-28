@@ -17,8 +17,8 @@ const { id, profile_path, name, job } = Astro.props;
     <a href={`/person/id/${id}`} class="gridA h-full">
         <img
         src={(profile_path) ? `https://image.tmdb.org/t/p/w500/${profile_path}` : `/profile_person_null.svg`} alt={name} class="h-full">
-        <p class="px-5 pt-2 text-center">{name}</p>
-        <p class="px-5 pb-2 text-center text-xs text-white/55 font-semibold">{job}</p>
+        <p class="px-5 pt-2 text-center dark:text-white font-medium">{name}</p>
+        <p class="px-5 pb-2 text-center text-xs dark:text-white/55 font-semibold text-black/55">{job}</p>
     </a>
 </div>
 

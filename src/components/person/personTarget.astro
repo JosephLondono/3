@@ -15,11 +15,11 @@ interface Props {
 
 const { name, id, profile_path, movies } = Astro.props;
 
-
+let cont = 0;
 ---
 
 <div
-class={ "grid grid-rows-2 rounded-xl w-48 tarjeta" }
+class={ "grid grid-rows-2 rounded-xl w-48 tarjeta dark:bg-[#061b55] text-black bg-slate-400/50" }
 >
     <a href=`/person/id/${id}` class={ (profile_path) ? `grid` : `grid content-center bg-[#172d69] rounded-xl` }>
         <img src={ (profile_path) ? `https://image.tmdb.org/t/p/w300/${profile_path}` : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg" } alt={name} class={ "rounded-xl" }>
@@ -27,14 +27,19 @@ class={ "grid grid-rows-2 rounded-xl w-48 tarjeta" }
     </a>
 
     <div class={ "flex flex-col px-2 py-3" }>
-        <a href="" class="w-full h-fit text-lg">
+        <a href="" class="w-full h-fit text-lg dark:text-white font-medium">
             {name}
         </a>
         <p class="h-fit flex justify-between text-sm">
-            <span class="text-white/50 font-semibold">
+            <span class="dark:text-white/55 font-semibold text-black/55">
                 {
                     movies.map(movie => {
-                        return (movie.title) ? `${movie.title} - ` : `${movie.name} - `
+                        cont++;
+                        if (cont < 3) {
+                            return (movie.title) ? `${movie.title} - ` : `${movie.name} - `
+                        } else {
+                            return (movie.title) ? `${movie.title}` : `${movie.name}`
+                        }
                     })                
                 }
             </span>
@@ -46,7 +51,6 @@ class={ "grid grid-rows-2 rounded-xl w-48 tarjeta" }
     
 <style>
     .tarjeta {
-        background-color: #061b55;
         display: grid;
         grid-template-rows: 281px auto;
     }
