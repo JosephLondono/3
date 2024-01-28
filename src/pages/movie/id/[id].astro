@@ -1,8 +1,9 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import SkeletonMovie from '../../../components/sketeletonMovie.astro';
-import SliderMovie from '../../../components/sliderMovie.astro';
+import SkeletonMovie from '../../../components/movie/sketeletonMovie.astro';
+import SliderMovie from '../../../components/movie/sliderMovie.astro';
 import { getMovieById } from '../../../services/api';
+import Reparto from '../../../components/movie/reparto.astro';
 
 export const prerender = false
 
@@ -22,6 +23,8 @@ metaImageAlt=`${data.title}`
         <SkeletonMovie id={id}/>
 
         <SliderMovie id={id}/>
+
+        <Reparto id={id}/>
     </main>
 
 </Layout>

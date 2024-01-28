@@ -1,7 +1,7 @@
 ---
 
-import { getPersonById } from '../services/api';
-import Genres from '../components/genres.astro';
+import { getPersonById } from '../../services/api';
+import Genres from '../genres.astro';
 
 interface Props {
     id: string;
@@ -13,17 +13,6 @@ const person = await getPersonById(id);
 
 console.log(person)
 
-const rating = Math.round(person.popularity);
-
-let color
-
-if (rating >= 70) {
-    color = "#34D399"
-} else if (rating >= 50) {
-    color = "#FBBF24"
-} else {
-    color = "#EF4444"
-}
 
 ---
 
@@ -45,19 +34,6 @@ if (rating >= 70) {
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-300">{person.tagline}</p>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400/90 text-pretty">{person.biography}</p>
         
-    </div>
-    <div class="w-14 absolute -ml-20 top-5 left-full">
-        <p class="absolute top-[26%] left-[26%] w-fit">{`${rating}%`}</p>
-        <svg viewBox="0 0 36 36">
-            <path
-            d="M18 2.0845
-            a 15.9155 15.9155 0 0 1 0 31.831
-            a 15.9155 15.9155 0 0 1 0 -31.831"
-            fill="#525755"
-            stroke={color}
-            stroke-width="4"
-            stroke-dasharray={`${rating}, 100`} />
-        </svg>
     </div>
 </div>
 

@@ -140,3 +140,21 @@ export async function getFunctionsByPerson(id: string) {
 
     return cast;
 }
+
+
+
+export async function getCastMovie(id: string) {
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: import.meta.env.Authorization
+        }
+    };
+    
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?language=es-US`, options);
+    const { cast } = await response.json().catch(err => console.error(err));
+    console.log(cast);
+
+    return cast;
+}

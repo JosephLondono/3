@@ -1,0 +1,36 @@
+---
+import { getCastMovie } from '../../services/api';
+import TargetReparto from './targetReparto.astro';
+
+
+
+
+interface Props {
+    id: string;
+}
+
+const { id } = Astro.props;
+
+
+const cast = await getCastMovie(id);
+console.log(cast);
+
+
+let cont = 0;
+---
+
+<article class="grid justify-items-center">
+    <h2>Reparto</h2>
+    
+    <section class="snap-mandatory snap-x flex gap-8 overflow-x-auto w-11/12 md:w-9/12 lg:w-8/12">
+        {
+            cast.map((actor) => {
+                cont++;
+                if (true) {
+                    return <TargetReparto name={actor.name} id={actor.id} profile_path={actor.profile_path} character={actor.character} />
+                }
+            })
+        }
+    </section>
+
+</article>
