@@ -14,7 +14,7 @@ interface Props {
 }
 
 const { name, id, profile_path, movies } = Astro.props;
-let titulo
+
 
 ---
 
@@ -34,7 +34,7 @@ class={ "grid grid-rows-2 rounded-xl w-48 tarjeta" }
             <span class="text-white/50 font-semibold">
                 {
                     movies.map(movie => {
-                        return (movie.title) ? `${movie.title}, ` : `${movie.name}, `
+                        return (movie.title) ? `${movie.title} - ` : `${movie.name} - `
                     })                
                 }
             </span>

@@ -1,0 +1,22 @@
+---
+
+interface Props {
+    id: string;
+    poster_path: string;
+    title: string;
+    type: string;
+}
+
+const { id,title,poster_path,type } = Astro.props;
+
+console.log(title)
+---
+
+<div class="snap-center shrink-0 overflow-hidden shadow-lg rounded-xl bg-blue-800/45 w-1/4">
+    <a href={`/${type}/id/${id}`} class="object-cover">
+        <img
+        src={`https://image.tmdb.org/t/p/w500/${poster_path}`} alt={title}>
+        <p class="px-5 py-2 text-center">{title}</p>
+    </a>
+</div>
+

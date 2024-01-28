@@ -1,0 +1,64 @@
+---
+
+import { getPersonById } from '../services/api';
+import Genres from '../components/genres.astro';
+
+interface Props {
+    id: string;
+}
+
+const { id } = Astro.props;
+
+const person = await getPersonById(id);
+
+console.log(person)
+
+const rating = Math.round(person.popularity);
+
+let color
+
+if (rating >= 70) {
+    color = "#34D399"
+} else if (rating >= 50) {
+    color = "#FBBF24"
+} else {
+    color = "#EF4444"
+}
+
+---
+
+
+
+
+
+<div class="flex flex-col w-[100%] items-center bg-white border border-gray-200 rounded-lg shadow md:flex-col md:max-w-6xl md:w-[80%] lg:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 relative">
+    <img fetchpriority="high" class="w-full rounded-t-lg md:w-48 md:rounded-none md:rounded-s-lg object-cover h-[100%]" src={ (person.profile_path) ? `https://image.tmdb.org/t/p/original/${person.profile_path}` : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg" } alt=`${person.name}` data-astro-prefetch>
+    
+    <div class="flex flex-col justify-between p-4 leading-normal">
+        <h5 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{person.name}</h5>
+        <span class="text-sm text-white/60 -mt-1 mb-3">{person.birthday}</span>
+        <div class="flex gap-0">
+            {
+                <Genres genres={person.known_for_department} />
+            }
+        </div>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-300">{person.tagline}</p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400/90 text-pretty">{person.biography}</p>
+        
+    </div>
+    <div class="w-14 absolute -ml-20 top-5 left-full">
+        <p class="absolute top-[26%] left-[26%] w-fit">{`${rating}%`}</p>
+        <svg viewBox="0 0 36 36">
+            <path
+            d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831"
+            fill="#525755"
+            stroke={color}
+            stroke-width="4"
+            stroke-dasharray={`${rating}, 100`} />
+        </svg>
+    </div>
+</div>
+
+

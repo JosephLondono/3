@@ -1,0 +1,39 @@
+---
+import functionsIntegration from '@astrojs/netlify/functions';
+import { getFunctionsByPerson } from '../services/api';
+import TargetMovies from './targetMovies.astro';
+
+interface Props {
+    id: string;
+}
+
+const { id } = Astro.props;
+
+const functions = await getFunctionsByPerson(id);
+console.log(functions);
+
+let funciones = functions.sort(((a, b) => b.vote_average - a.vote_average));
+
+console.log(funciones);
+
+let cont = 0;
+---
+
+<section class="grid justify-items-center">
+    <h2>Conocido Por</h2>
+    
+    <section class="snap-mandatory snap-x flex gap-8 overflow-x-auto w-11/12 md:w-9/12 lg:w-8/12">
+        {
+            funciones.map((funcion) => {
+                if (cont < 6) {
+                    cont++;
+                    <p>{funcion.title}</p>
+                    return <TargetMovies id={funcion.id} poster_path={funcion.poster_path} 
+                    title={ (funcion.title) ? funcion.title : funcion.name}
+                    type={funcion.media_type} />
+                }
+            })
+        }
+    </div>
+
+</section>

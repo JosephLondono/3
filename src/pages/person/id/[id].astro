@@ -1,0 +1,27 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SkeletonPerson from '../../../components/skeletonPerson.astro';
+import { getMovieById, getPersonById } from '../../../services/api';
+import SliderPerson from '../../../components/sliderPerson.astro';
+
+export const prerender = false
+
+const { id } = Astro.params
+
+const data = await getPersonById(id);
+
+---
+
+<Layout 
+title=`${data.name} | Movie Info` 
+description=`Ver la informacion sobre la persona ${data.name}`
+metaImage=`https://image.tmdb.org/t/p/original/`
+metaImageAlt=``
+>
+    <main class="grid mx-auto my-10 justify-items-center gap-9">
+        <SkeletonPerson id={id}/> 
+
+        <SliderPerson id={id}/>
+    </main>
+
+</Layout>
