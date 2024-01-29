@@ -15,7 +15,7 @@ const { id, profile_path, name, character } = Astro.props;
 <div class="snap-center shrink-0 overflow-hidden shadow-lg rounded-xl bg-blue-800/45 object-cover w-1/2 sm:w-4/12 md:w-1/4 lg:w-1/5">
     <a href={`/person/id/${id}`} class="gridA h-full">
         <img
-        src={(profile_path) ? `https://image.tmdb.org/t/p/w500/${profile_path}` : `/profile_person_null.svg`} alt={name} class="h-full">
+        src={(profile_path) ? `https://image.tmdb.org/t/p/w300/${profile_path}` : `/profile_person_null.svg`} alt={name} class="h-full">
         <p class="px-5 pt-2 text-center text-black dark:text-white font-medium">{name}</p>
         <p class="px-5 pb-2 text-center text-xs dark:text-white/55 font-semibold text-black/55">{character}</p>
     </a>
