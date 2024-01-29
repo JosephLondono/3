@@ -19,12 +19,15 @@ const rating = Math.round(tv.vote_average * 10);
 let color
 
 if (rating >= 70) {
-    color = "#34D399"
+    color = "#a6ff00"
 } else if (rating >= 50) {
-    color = "#FBBF24"
+    color = "#fff200"
+} else if (rating >= 30) {
+    color = "#F59E0B"
 } else {
     color = "#EF4444"
 }
+
 
 
 ---
