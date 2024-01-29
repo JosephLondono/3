@@ -10,7 +10,9 @@ export const prerender = false
 const { id } = Astro.params
 
 
+
 const data = await getTvById(id);
+console.log(data)
 
 
 ---
@@ -18,7 +20,7 @@ const data = await getTvById(id);
 <Layout 
 title=`${data.name} | Movie Info` 
 description=`Ver la informacion sobre la serie ${data.name}`
-metaImage=``
+metaImage=`https://image.tmdb.org/t/p/original/${data.backdrop_path}`
 metaImageAlt=`${data.name}`
 >
     <main class="grid mx-auto my-10 justify-items-center gap-9">

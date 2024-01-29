@@ -9,13 +9,14 @@ export const prerender = false
 const { id } = Astro.params
 
 const data = await getPersonById(id);
+console.log(data);
 
 ---
 
 <Layout 
 title=`${data.name} | Movie Info` 
 description=`Ver la informacion sobre la persona ${data.name}`
-metaImage=`https://image.tmdb.org/t/p/original/`
+metaImage=`https://image.tmdb.org/t/p/original/${data.profile_path}`
 metaImageAlt=``
 >
     <main class="grid mx-auto my-10 justify-items-center gap-9">
