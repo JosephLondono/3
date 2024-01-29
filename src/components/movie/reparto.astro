@@ -26,7 +26,7 @@ let cont = 0;
         {
             cast.map((actor) => {
                 cont++;
-                if (true) {
+                if (cont < 11) {
                     return <TargetReparto name={actor.name} id={actor.id} profile_path={actor.profile_path} character={actor.character} />
                 }
             })

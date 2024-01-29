@@ -16,7 +16,6 @@ let funciones = functions.sort(((a, b) => b.vote_average - a.vote_average));
 
 console.log(funciones);
 
-let cont = 0;
 ---
 
 <section class="grid justify-items-center">
@@ -25,13 +24,9 @@ let cont = 0;
     <section class="snap-mandatory snap-x flex gap-8 overflow-x-auto w-11/12 md:w-9/12 lg:w-8/12 mt-5">
         {
             funciones.map((funcion) => {
-                if (cont < 6) {
-                    cont++;
-                    <p>{funcion.title}</p>
-                    return <TargetMovies id={funcion.id} poster_path={funcion.poster_path} 
-                    title={ (funcion.title) ? funcion.title : funcion.name}
-                    type={funcion.media_type} />
-                }
+                return <TargetMovies id={funcion.id} poster_path={funcion.poster_path} 
+                title={ (funcion.title) ? funcion.title : funcion.name}
+                type={funcion.media_type} />
             })
         }
     </div>
