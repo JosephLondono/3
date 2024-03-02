@@ -1,8 +1,8 @@
 ---
 
-import Layout from '../../layouts/Layout.astro';
-import { searchMovie } from "../../services/api";
-import SearchComponent from "../../components/searchComponent.astro";
+import Layout from '../layouts/Layout.astro';
+import { searchMovie } from "../services/api";
+import SearchComponent from "../components/searchComponent.astro";
 
 let request = Astro.url.searchParams.get('query');
 let filter = Astro.url.searchParams.get('filter');
