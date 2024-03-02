@@ -1,10 +1,10 @@
 ---
 
-import Layout from '../layouts/Layout.astro';
-import { searchMovie } from "../services/api";
-import SearchComponent from "../components/searchComponent.astro";
+import Layout from '../../layouts/Layout.astro';
+import { searchMovie } from "../../services/api";
+import SearchComponent from "../../components/searchComponent.astro";
 
-let request = Astro.url.searchParams.get('search');
+let request = Astro.url.searchParams.get('query');
 let filter = Astro.url.searchParams.get('filter');
 
 console.log(filter);
@@ -52,17 +52,17 @@ metaImageAlt="Pagina de busqueda de Movie Info"
             <section>
                 <ol>
                     <li>
-                        <a href=`/search?search=${request}` class="dark:hover:bg-[#060f25] px-3">
+                        <a href=`/search?query=${request}` class="dark:hover:bg-[#060f25] px-3">
                             Peliculas
                         </a>
                     </li>
                     <li>
-                        <a href=`?search=${request}&filter=tv` class="dark:hover:bg-[#060f25] px-3">
+                        <a href=`?query=${request}&filter=tv` class="dark:hover:bg-[#060f25] px-3">
                             Series
                         </a>
                     </li>
                     <li>
-                        <a href=`search?search=${request}&filter=person` class="dark:hover:bg-[#060f25] px-3">
+                        <a href=`search?query=${request}&filter=person` class="dark:hover:bg-[#060f25] px-3">
                             Actores
                         </a>
                     </li>

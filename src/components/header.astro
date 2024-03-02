@@ -1,5 +1,5 @@
 ---
-let request = Astro.url.searchParams.get('search');
+let request = Astro.url.searchParams.get('query');
 let filter = Astro.url.searchParams.get('filter');
 
 console.log(request);
@@ -46,8 +46,8 @@ if(filter){
     </header>
 
     <div class="w-full flex items-center justify-center px-12" id="DivSearch" style="display: none;">
-        <form action="search" method="get" class="w-[80%] flex gap-5">
-            <input type="text" name="search" id="search" placeholder="Buscar" class="w-[90%] h-10 px-2" value={request}>
+        <form method="get" class="w-[80%] flex gap-5" action="search">
+            <input type="text" name="query" id="search" placeholder="Buscar" class="w-[90%] h-10 px-2" value={request}>
             {
                 (!opcion) ? null : <input type="hidden" name="filter" value={filter}>
             }
