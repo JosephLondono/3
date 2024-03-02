@@ -46,7 +46,7 @@ if(filter){
     </header>
 
     <div class="w-full flex items-center justify-center px-12" id="DivSearch" style="display: none;">
-        <form class="w-[80%] flex gap-5" action="/search">
+        <form class="w-[80%] flex gap-5 items-center">
             <input type="text" name="query" id="search" placeholder="Buscar" class="w-[90%] h-10 px-2" value={request}>
             {
                 (!opcion) ? null : <input type="hidden" name="filter" value={filter}>
@@ -82,4 +82,17 @@ if(filter){
             document.getElementById('botonSearch').innerHTML = '<svg fill="#ffffff" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="25.6"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M202.82861,197.17188a3.99991,3.99991,0,1,1-5.65722,5.65624L128,133.65723,58.82861,202.82812a3.99991,3.99991,0,0,1-5.65722-5.65624L122.343,128,53.17139,58.82812a3.99991,3.99991,0,0,1,5.65722-5.65624L128,122.34277l69.17139-69.17089a3.99991,3.99991,0,0,1,5.65722,5.65624L133.657,128Z"></path> </g></svg>';
         }
     });
+
+        document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evitar que se envíe el formulario automáticamente
+
+        let query = document.getElementById('search').value; // Obtener el valor del campo de búsqueda
+
+        // Construir la URL completa
+        let url = `search?query=${encodeURIComponent(query)}`;
+
+        // Redirigir a la nueva URL
+        window.location.href = url;
+    });
+
 </script>
