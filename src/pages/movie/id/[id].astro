@@ -10,6 +10,7 @@ export const prerender = false
 const { id } = Astro.params
 
 const data = await getMovieById(id)
+console.log(id)
 
 ---
 

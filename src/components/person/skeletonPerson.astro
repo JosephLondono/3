@@ -10,8 +10,15 @@ interface Props {
 const { id } = Astro.props;
 
 const person = await getPersonById(id);
-
+let textoWord
 console.log(person)
+let isComplete = false;
+if(person.biography.length > 110){
+    textoWord = person.biography.split(" ").slice(0,100).join(" ");
+} else {
+    textoWord = person.biography;
+    isComplete = true;
+}
 
 
 ---
@@ -20,7 +27,12 @@ console.log(person)
 
 
 
-<div class="flex flex-col w-[90%] items-center bg-white border border-gray-200 rounded-lg shadow md:flex-col md:max-w-6xl md:w-[80%] lg:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 relative">
+<div class="flex flex-col w-[90%] items-center bg-white border border-gray-200 rounded-lg shadow md:flex-col md:max-w-6xl md:w-[80%] lg:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 relative h-fit">
+    <span style="display: none;" id="textComplete">
+        {
+            person.biography
+        }
+    </span>
     <img fetchpriority="high" class="w-full rounded-t-lg md:w-48 md:rounded-none md:rounded-s-lg object-cover h-[50%] md:h-full" src={ (person.profile_path) ? `https://image.tmdb.org/t/p/w500/${person.profile_path}` : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg" } alt=`${person.name}` data-astro-prefetch>
     
     <div class="flex flex-col justify-between p-4 leading-normal">
@@ -32,9 +44,21 @@ console.log(person)
             }
         </div>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-300">{person.tagline}</p>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400/90 text-pretty">{person.biography}</p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400/90 text-pretty" id="parrafoTexto">
+            {textoWord}
+            {(textoWord.length < 110) ? null : <button id="botonVerMas">Ver mas</button>}
+        </p>
         
     </div>
 </div>
 
-
+<script>
+    const textComplete = document.getElementById('textComplete').textContent;
+    const parrafoTexto = document.getElementById('parrafoTexto'); 
+    const botonVerMas = document.getElementById('botonVerMas');
+    
+    botonVerMas.addEventListener('click', () => {
+        parrafoTexto.textContent = textComplete;
+        botonVerMas.style.display = 'none';
+    });
+</script>

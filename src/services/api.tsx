@@ -173,3 +173,30 @@ export async function getCastTv(id: string) {
 
     return cast;
 }
+
+
+export async function searchMovie(Request: string | null, Filter: string | null) {
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: import.meta.env.Authorization
+        }
+    };
+
+    if(Request === null) return;
+    let request = Request.replaceAll(" ", "%20")
+    let filter
+    if(Filter === null) {
+        filter = "movie";
+    } else {
+        filter = Filter;
+    }
+    console.log(filter);
+
+    const response = await fetch(`https://api.themoviedb.org/3/search/${filter}?query=${request}&include_adult=false&language=es-US&page=1`, options);
+    const { results } = await response.json().catch(err => console.error(err));
+    console.log(results);
+
+    return results;
+}
