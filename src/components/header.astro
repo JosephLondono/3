@@ -45,7 +45,7 @@ if(filter){
         </nav>
     </header>
 
-    <div class="w-full flex items-center justify-center px-12" id="DivSearch">
+    <div class="w-full flex items-center justify-center px-12" id="DivSearch" style="display: none;">
         <form action="/search" method="get" class="w-[80%] flex gap-5">
             <input type="text" name="search" id="search" placeholder="Buscar" class="w-[90%] h-10 px-2" value={request}>
             {
@@ -63,6 +63,7 @@ if(filter){
     .IconSearch{
         width: 30px;
         height: 27px;
+
     }
     .hide {
         display: none;
@@ -74,9 +75,11 @@ if(filter){
     document.getElementById('botonSearch').addEventListener('click', function(){
         if(document.getElementById('DivSearch').style.display == 'flex'){
             document.getElementById('DivSearch').style.display = 'none';
+            document.getElementById('botonSearch').innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>';
             return;
         } else {
             document.getElementById('DivSearch').style.display = 'flex';
+            document.getElementById('botonSearch').innerHTML = '<svg fill="#ffffff" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="25.6"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M202.82861,197.17188a3.99991,3.99991,0,1,1-5.65722,5.65624L128,133.65723,58.82861,202.82812a3.99991,3.99991,0,0,1-5.65722-5.65624L122.343,128,53.17139,58.82812a3.99991,3.99991,0,0,1,5.65722-5.65624L128,122.34277l69.17139-69.17089a3.99991,3.99991,0,0,1,5.65722,5.65624L133.657,128Z"></path> </g></svg>';
         }
     });
 
