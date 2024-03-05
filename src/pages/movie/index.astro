@@ -5,6 +5,7 @@ import MovieTarget from '../../components/movie/MovieTarget.astro';
 import Layout from '../../layouts/Layout.astro';
 import { getMovies } from '../../services/api';
 import Numberpages from '../../components/Numberpages.astro';
+import { ViewTransitions } from 'astro:transitions';
 
 
 let page = Astro.url.searchParams.get('page');
@@ -26,6 +27,7 @@ description="Ver todas las peliculas populares"
 metaImage="https://i.ibb.co/4YwJQw9/image.png"
 metaImageAlt="Pagina Principal de peliculas populares"
 >
+	<ViewTransitions />
 	<main class= { "grid justify-items-center gap-5" }>
 		<h2 class={ "text-3xl" }>Peliculas</h2>
 		<section class={ "grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" }>
