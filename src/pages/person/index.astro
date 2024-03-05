@@ -5,7 +5,6 @@ import PersonTarget from '../../components/person/personTarget.astro';
 import Layout from '../../layouts/Layout.astro';
 import { getPerson } from '../../services/api';
 import Numberpages from '../../components/Numberpages.astro';
-import { ViewTransitions } from 'astro:transitions';
 
 
 let page = Astro.url.searchParams.get('page');
@@ -29,7 +28,6 @@ description="Ver todas las personas populares"
 metaImage="https://i.ibb.co/GtDHZJ9/image.png"
 metaImageAlt="Pagina Principal de personas populares"
 >
-	<ViewTransitions />
 	<main class= { "grid justify-items-center gap-5" }>
 		<h2 class={ "text-3xl" }>Personas</h2>
 		<section class={ "grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" }>
