@@ -5,6 +5,7 @@ import TvTarget from '../../components/tv/tvTarget.astro';
 import Layout from '../../layouts/Layout.astro';
 import { getTv } from '../../services/api';
 import Numberpages from '../../components/Numberpages.astro';
+import { ViewTransitions } from 'astro:transitions';
 
 
 let page = Astro.url.searchParams.get('page');
@@ -28,6 +29,7 @@ description="Ver todas las series de Tv populares"
 metaImage="https://i.ibb.co/fN3RnDD/image.png"
 metaImageAlt="Pagina Principal de series populares"
 >
+	<ViewTransitions />
 	<main class= { "grid justify-items-center gap-5" }>
 		<h2 class={ "text-3xl" }>Series Tv</h2>
 		<section class={ "grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" }>
