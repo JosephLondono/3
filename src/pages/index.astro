@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import MovieTarget from '../components/movie/MovieTarget.astro';
 import PersonTarget from '../components/person/personTarget.astro';
 import TvTarget from "../components/tv/tvTarget.astro";
@@ -24,6 +25,7 @@ description="Pagina para buscar infomracion de peliculas nuevas, antiguas y popu
 metaImage="https://i.ibb.co/2Wq16xL/image.png"
 metaImageAlt="Pagina Principal de Movies Info"
 >
+	<ViewTransitions />
 	<main class= { "grid justify-items-center gap-3 sm:gap-1" }>
 		<h1 class={ "text-4xl text-black dark:text-white font-semibold" }>Bienvenido a <span class="text-gradient">Movies Info</span></h1>
 		<article class={ "grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-8 xl:grid-cols-3" } > 
