@@ -1,34 +1,28 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
-import SkeletonTv from '../../../components/tv/skeletonTv.astro';
-import SliderTv from '../../../components/tv/sliderTv.astro';
-import { getTvById } from '../../../services/api';
-import RepartoTv from '../../../components/tv/repartoTv.astro';
+import Layout from "../../../layouts/Layout.astro";
+import SkeletonTv from "../../../components/tv/skeletonTv.astro";
+import SliderTv from "../../../components/tv/sliderTv.astro";
+import { getTvById } from "../../../services/api";
+import RepartoTv from "../../../components/tv/repartoTv.astro";
 
-export const prerender = false
+export const prerender = false;
 
-const { id } = Astro.params
-
-
+const { id } = Astro.params;
 
 const data = await getTvById(id);
-console.log(data)
-
-
+data;
 ---
 
-<Layout 
-title=`${data.name} | Movie Info` 
-description=`Ver la informacion sobre la serie ${data.name}`
-metaImage=`https://image.tmdb.org/t/p/original/${data.backdrop_path}`
-metaImageAlt=`${data.name}`
->
-    <main class="grid mx-auto my-10 justify-items-center gap-9">
-        <SkeletonTv id={id}/>
+<Layout
+  title=`${data.name} | Movie Info`
+  description=`Ver la informacion sobre la serie ${data.name}`
+  metaImage=`https://image.tmdb.org/t/p/original/${data.backdrop_path}`
+  metaImageAlt=`${data.name}`>
+  <main class="grid mx-auto my-10 justify-items-center gap-9">
+    <SkeletonTv id={id} />
 
-        <SliderTv id={data.id}/>
+    <SliderTv id={data.id} />
 
-        <RepartoTv id={data.id}/>
-    </main>
-
+    <RepartoTv id={data.id} />
+  </main>
 </Layout>

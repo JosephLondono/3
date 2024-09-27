@@ -1,69 +1,71 @@
 ---
-
-import { getTvById } from '../../services/api';
-import Genres from '../genres.astro';
+import { getTvById } from "../../services/api";
+import Genres from "../genres.astro";
 
 interface Props {
-    id: string;
+  id: string;
 }
 
 const { id } = Astro.props;
 
 const tv = await getTvById(id);
 
-console.log(tv)
-
 const rating = Math.round(tv.vote_average * 10);
 
-
-let color
+let color;
 
 if (rating >= 70) {
-    color = "#a6ff00"
+  color = "#a6ff00";
 } else if (rating >= 50) {
-    color = "#fff200"
+  color = "#fff200";
 } else if (rating >= 30) {
-    color = "#F59E0B"
+  color = "#F59E0B";
 } else {
-    color = "#EF4444"
+  color = "#EF4444";
 }
-
-
-
 ---
 
+<div
+  class="flex flex-col w-[90%] items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-4xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 relative">
+  <img
+    fetchpriority="high"
+    class="w-full rounded-t-lg md:w-48 md:rounded-none md:rounded-s-lg object-cover h-[50%] md:h-full"
+    src={tv.poster_path
+      ? `https://image.tmdb.org/t/p/w500/${tv.poster_path}`
+      : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"}
+    alt=`${tv.name}`
+    data-astro-prefetch
+  />
 
-
-
-
-<div class="flex flex-col w-[90%] items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-4xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 relative">
-    <img fetchpriority="high" class="w-full rounded-t-lg md:w-48 md:rounded-none md:rounded-s-lg object-cover h-[50%] md:h-full" src={ (tv.poster_path) ? `https://image.tmdb.org/t/p/w500/${tv.poster_path}` : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg" } alt=`${tv.name}` data-astro-prefetch>
-    
-    <div class="flex flex-col justify-between p-4 leading-normal">
-        <h5 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{tv.name}</h5>
-        <span class="text-sm text-white/60 -mt-1 mb-3">{tv.first_air_date}</span>
-        <div class="flex gap-0">
-        { tv.genres.map((genre) => (
-            <Genres genres={genre.name} />
-        ))}
-        </div>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-300">{tv.tagline}</p>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400/90 text-pretty">{tv.overview}</p>
-        
+  <div class="flex flex-col justify-between p-4 leading-normal">
+    <h5
+      class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+      {tv.name}
+    </h5>
+    <span class="text-sm text-white/60 -mt-1 mb-3">{tv.first_air_date}</span>
+    <div class="flex gap-0">
+      {tv.genres.map((genre) => <Genres genres={genre.name} />)}
     </div>
-    <div class="w-14 absolute -ml-20 top-5 left-full">
-        <p class="absolute top-[26%] left-[26%] w-fit dark:text-white">{`${rating}%`}</p>
-        <svg viewBox="0 0 36 36">
-            <path
-            d="M18 2.0845
+    <p class="mb-3 font-normal text-gray-700 dark:text-gray-300">
+      {tv.tagline}
+    </p>
+    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400/90 text-pretty">
+      {tv.overview}
+    </p>
+  </div>
+  <div class="w-14 absolute -ml-20 top-5 left-full">
+    <p class="absolute top-[26%] left-[26%] w-fit dark:text-white">
+      {`${rating}%`}
+    </p>
+    <svg viewBox="0 0 36 36">
+      <path
+        d="M18 2.0845
             a 15.9155 15.9155 0 0 1 0 31.831
             a 15.9155 15.9155 0 0 1 0 -31.831"
-            fill="#07090d"
-            stroke={color}
-            stroke-width="4"
-            stroke-dasharray={`${rating}, 100`} />
-        </svg>
-    </div>
+        fill="#07090d"
+        stroke={color}
+        stroke-width="4"
+        stroke-dasharray={`${rating}, 100`}></path>
+    </svg>
+  </div>
 </div>
-
-

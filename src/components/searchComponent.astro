@@ -1,36 +1,51 @@
 ---
-import MovieTarget from './movie/MovieTarget.astro';
-import PersonTarget from './person/personTarget.astro';
-import TvTarget from './tv/tvTarget.astro';
-
+import MovieTarget from "./movie/MovieTarget.astro";
+import PersonTarget from "./person/personTarget.astro";
+import TvTarget from "./tv/tvTarget.astro";
 
 interface Props {
-    result: string;
-    filter: string;
+  result: string;
+  filter: string;
 }
 
 const { result, filter } = Astro.props;
-
-console.log(result);
-console.log(filter);
 
 let isMovie = false;
 let isTv = false;
 let isPerson = false;
 
-if (filter==null) {
-    isMovie = true
-} else if(filter=="tv") {
-    isTv = true
-} else if(filter=="person") {
-    isPerson = true
+if (filter == null) {
+  isMovie = true;
+} else if (filter == "tv") {
+  isTv = true;
+} else if (filter == "person") {
+  isPerson = true;
 }
 ---
 
 {
-    (isMovie) ? <MovieTarget title={result.title} date={result.release_date} poster_path={result.poster_path} adult={result.adult} id={result.id}/> 
-    : 
-    (isTv) ? <TvTarget name={result.name} first_air_date={result.first_air_date} poster_path={result.poster_path} adult={result.adult} id={result.id}/> 
-    : 
-    (isPerson) ? <PersonTarget name={result.name} profile_path={result.profile_path} movies={result.known_for} id={result.id}/> : null
+  isMovie ? (
+    <MovieTarget
+      title={result.title}
+      date={result.release_date}
+      poster_path={result.poster_path}
+      adult={result.adult}
+      id={result.id}
+    />
+  ) : isTv ? (
+    <TvTarget
+      name={result.name}
+      first_air_date={result.first_air_date}
+      poster_path={result.poster_path}
+      adult={result.adult}
+      id={result.id}
+    />
+  ) : isPerson ? (
+    <PersonTarget
+      name={result.name}
+      profile_path={result.profile_path}
+      movies={result.known_for}
+      id={result.id}
+    />
+  ) : null
 }

@@ -1,47 +1,49 @@
 ---
-import { getVideosByIdMovie } from '../../services/api';
-import Videos from '../videos.astro';
+import { getVideosByIdMovie } from "../../services/api";
+import Videos from "../videos.astro";
 
 interface Props {
-    id: string;
+  id: string;
 }
 
 const { id } = Astro.props;
 
-console.log(id)
-
 const data = await getVideosByIdMovie(id);
 
 let cantidad = 0;
-let resultado
+let resultado;
 let cantidadVideo = 0;
 
-console.log(data)
-
-if(data == undefined || data.length == 0){
-    resultado = "No hay videos disponibles"
+if (data == undefined || data.length == 0) {
+  resultado = "No hay videos disponibles";
 } else {
-    resultado = "Videos"
-    cantidadVideo = data.length;
-    console.log(cantidadVideo)
+  resultado = "Videos";
+  cantidadVideo = data.length;
 }
 let cont = 0;
-
 ---
 
-    {
-        (cantidadVideo == 0) ? <h2 class="text-black dark:text-white text-lg font-semibold">No hay videos disponibles</h2> : <h2 class="text-black dark:text-white text-lg font-semibold">Videos</h2> 
-    }
-
+{
+  cantidadVideo == 0 ? (
+    <h2 class="text-black dark:text-white text-lg font-semibold">
+      No hay videos disponibles
+    </h2>
+  ) : (
+    <h2 class="text-black dark:text-white text-lg font-semibold">Videos</h2>
+  )
+}
 
 {
-    (cantidadVideo > 0) ? null : <section class="snap-mandatory snap-x flex gap-4 overflow-x-auto w-11/12 md:w-9/12 lg:w-8/12">
-        
-        {
-            data.map((video) => (
-                cont++,
-                (cont < cantidad+1 ) ? <Videos key={video.key} cantidad={cantidad}/> : null
-            ))
-        }
+  cantidadVideo > 0 ? null : (
+    <section class="snap-mandatory snap-x flex gap-4 overflow-x-auto w-11/12 md:w-9/12 lg:w-8/12">
+      {data.map(
+        (video) => (
+          cont++,
+          cont < cantidad + 1 ? (
+            <Videos key={video.key} cantidad={cantidad} />
+          ) : null
+        )
+      )}
     </section>
+  )
 }

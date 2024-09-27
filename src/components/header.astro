@@ -1,85 +1,116 @@
 ---
-let request = Astro.url.searchParams.get('query');
-let filter = Astro.url.searchParams.get('filter');
+let request = Astro.url.searchParams.get("query");
+let filter = Astro.url.searchParams.get("filter");
 
-console.log(request);
-let opcion 
-if(filter){
-    opcion = true;
+let opcion;
+if (filter) {
+  opcion = true;
 } else {
-    opcion = false;
+  opcion = false;
 }
 ---
 
 <header>
-    <header class={ "w-full flex justify-between py-4 px-16 flex-col gap-10 text-center items-center md:flex-row bg-[#0c1d47] text-white dark:bg-[#060f25]" }>
-    
-    
-        <a href="/">
-            <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" alt="Logo Page" class={ "w-52" }>
-        </a>
+  <header
+    class={"w-full flex justify-between py-4 px-16 flex-col gap-10 text-center items-center md:flex-row bg-[#0c1d47] text-white dark:bg-[#060f25]"}>
+    <a href="/">
+      <img
+        src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+        alt="Logo Page"
+        class={"w-52"}
+      />
+    </a>
 
-        <nav>
-            <ol class={ "flex flex-col gap-2 [&>li]:text-xl justify-around md:flex-row md:gap-14 lg:gap-28" }>
-                <li>
-                    <a href="/movie">
-                        Peliculas
-                    </a>
-                </li>
-                <li>
-                    <a href="/tv">
-                        Tv
-                    </a>
-                </li>
-                <li>
-                    <a href="/person">
-                        Personas
-                    </a>
-                </li>
-                <li>
-                    <button type="button" class="IconSearch" id="botonSearch">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-                    </button>
-                </li>
-            </ol>
-        </nav>
-    </header>
+    <nav>
+      <ol
+        class={"flex flex-col gap-2 [&>li]:text-xl justify-around md:flex-row md:gap-14 lg:gap-28"}>
+        <li>
+          <a href="/movie"> Peliculas </a>
+        </li>
+        <li>
+          <a href="/tv"> Tv </a>
+        </li>
+        <li>
+          <a href="/person"> Personas </a>
+        </li>
+        <li>
+          <button type="button" class="IconSearch" id="botonSearch">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                <path
+                  d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+                  stroke="#ffffff"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </g></svg
+            >
+          </button>
+        </li>
+      </ol>
+    </nav>
+  </header>
 
-    <div class="w-full flex items-center justify-center px-12" id="DivSearch" style="display: none;">
-        <form method="get" class="w-[80%] flex gap-5" action="search">
-            <input type="text" name="query" id="search" placeholder="Buscar" class="w-[90%] h-10 px-2" value={request}>
-            {
-                (!opcion) ? null : <input type="hidden" name="filter" value={filter}>
-            }
-            <button type="submit" class="IconSearch">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-            </button>
-        </form>
-    </div>
-
+  <div
+    class="w-full flex items-center justify-center px-12"
+    id="DivSearch"
+    style="display: none;">
+    <form method="get" class="w-[80%] flex gap-5" action="search">
+      <input
+        type="text"
+        name="query"
+        id="search"
+        placeholder="Buscar"
+        class="w-[90%] h-10 px-2"
+        value={request}
+      />
+      {!opcion ? null : <input type="hidden" name="filter" value={filter} />}
+      <button type="submit" class="IconSearch">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+          ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+            <path
+              d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+              stroke="#ffffff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </g></svg
+        >
+      </button>
+    </form>
+  </div>
 </header>
 
 <style>
-    .IconSearch{
-        width: 30px;
-        height: 27px;
-
-    }
-    .hide {
-        display: none;
-    
-    }
+  .IconSearch {
+    width: 30px;
+    height: 27px;
+  }
+  .hide {
+    display: none;
+  }
 </style>
 
 <script>
-    document.getElementById('botonSearch').addEventListener('click', function(){
-        if(document.getElementById('DivSearch').style.display == 'flex'){
-            document.getElementById('DivSearch').style.display = 'none';
-            document.getElementById('botonSearch').innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>';
-            return;
-        } else {
-            document.getElementById('DivSearch').style.display = 'flex';
-            document.getElementById('botonSearch').innerHTML = '<svg fill="#ffffff" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="25.6"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M202.82861,197.17188a3.99991,3.99991,0,1,1-5.65722,5.65624L128,133.65723,58.82861,202.82812a3.99991,3.99991,0,0,1-5.65722-5.65624L122.343,128,53.17139,58.82812a3.99991,3.99991,0,0,1,5.65722-5.65624L128,122.34277l69.17139-69.17089a3.99991,3.99991,0,0,1,5.65722,5.65624L133.657,128Z"></path> </g></svg>';
-        }
-    });
+  document.getElementById("botonSearch").addEventListener("click", function () {
+    if (document.getElementById("DivSearch").style.display == "flex") {
+      document.getElementById("DivSearch").style.display = "none";
+      document.getElementById("botonSearch").innerHTML =
+        '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 6C13.7614 6 16 8.23858 16 11M16.6588 16.6549L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>';
+      return;
+    } else {
+      document.getElementById("DivSearch").style.display = "flex";
+      document.getElementById("botonSearch").innerHTML =
+        '<svg fill="#ffffff" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="25.6"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M202.82861,197.17188a3.99991,3.99991,0,1,1-5.65722,5.65624L128,133.65723,58.82861,202.82812a3.99991,3.99991,0,0,1-5.65722-5.65624L122.343,128,53.17139,58.82812a3.99991,3.99991,0,0,1,5.65722-5.65624L128,122.34277l69.17139-69.17089a3.99991,3.99991,0,0,1,5.65722,5.65624L133.657,128Z"></path> </g></svg>';
+    }
+  });
 </script>

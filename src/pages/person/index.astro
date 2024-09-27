@@ -8,13 +8,13 @@ import Numberpages from "../../components/Numberpages.astro";
 
 let page = Astro.url.searchParams.get("page");
 page == null ? (page = "1") : (page = page);
-console.log(page);
+page;
 
 if (parseInt(page) <= 0 || parseInt(page) > 500) return Astro.redirect("/404");
 
 const data = await getPerson(page);
 
-console.log(data);
+data;
 ---
 
 <Layout

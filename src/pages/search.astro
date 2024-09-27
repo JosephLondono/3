@@ -1,109 +1,110 @@
 ---
 export const prerender = false;
 
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 import { searchMovie } from "../services/api";
 import SearchComponent from "../components/searchComponent.astro";
 
-let request = Astro.url.searchParams.get('query');
-let filter = Astro.url.searchParams.get('filter');
+let request = Astro.url.searchParams.get("query");
+let filter = Astro.url.searchParams.get("filter");
 
-console.log(filter);
+let resultado;
 
-let resultado
-
-if(request === null){
-    resultado = "No se ha encontrado ninguna pelicula"
+if (request === null) {
+  resultado = "No se ha encontrado ninguna pelicula";
 } else {
-    resultado = `Resultados para: ${request} en peliculas`
+  resultado = `Resultados para: ${request} en peliculas`;
 }
 
 let resultados = await searchMovie(request, filter);
-console.log(resultados);
 
-if(resultados === undefined){
-    resultado = "No se ha encontrado ninguna pelicula"
-    resultados = []
+if (resultados === undefined) {
+  resultado = "No se ha encontrado ninguna pelicula";
+  resultados = [];
 } else {
-    if(resultados.length === 0){
-        resultado = "No se ha encontrado ninguna pelicula"
-        resultados = []
-    }
+  if (resultados.length === 0) {
+    resultado = "No se ha encontrado ninguna pelicula";
+    resultados = [];
+  }
 }
 
-if(filter === "tv"){
-    resultado = `Resultados para: ${request} en series`
-} else if(filter === "person"){
-    resultado = `Resultados para: ${request} en actores`
+if (filter === "tv") {
+  resultado = `Resultados para: ${request} en series`;
+} else if (filter === "person") {
+  resultado = `Resultados para: ${request} en actores`;
 }
-
 ---
 
-<Layout 
-title="Busqueda | Movie Info" 
-description="Busca peliculas, series y actores en Movie Info"
-metaImage="https://i.ibb.co/4YwJQw9/image.png"
-metaImageAlt="Pagina de busqueda de Movie Info"
->   
-	<main class={(resultados.length == 0) ? `grid justify-items-center gap-5 sm:grid-cols-filters grid-cols-1 h-[300px]` : "grid justify-items-center gap-5 sm:grid-cols-filters grid-cols-1"}>
-        <aside class="mt-16 dark:bg-[#192a52] px-4 py-3 rounded-xl h-fit">
-            <h3 class="text-2xl">
-                Filtros de busqueda
-            </h3>
-            <section>
-                <ol>
-                    <li>
-                        <a href=`/search?query=${request}` class="dark:hover:bg-[#060f25] px-3">
-                            Peliculas
-                        </a>
-                    </li>
-                    <li>
-                        <a href=`/search?query=${request}&filter=tv` class="dark:hover:bg-[#060f25] px-3">
-                            Series
-                        </a>
-                    </li>
-                    <li>
-                        <a href=`/search?query=${request}&filter=person` class="dark:hover:bg-[#060f25] px-3">
-                            Actores
-                        </a>
-                    </li>
-                </ol>
-            </section>
-        </aside>
-        <section>
-            <h2 class={ "text-3xl text-center mb-8" }>{resultado}</h2>
-            <div class={ "grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center" }>
-                {   
-                    resultados.map((result) => (
-                        <SearchComponent result={result} filter={filter}/>
-                    ))
-                }
-		    </div>
-        </section>
-	</main>
-
-
+<Layout
+  title="Busqueda | Movie Info"
+  description="Busca peliculas, series y actores en Movie Info"
+  metaImage="https://i.ibb.co/4YwJQw9/image.png"
+  metaImageAlt="Pagina de busqueda de Movie Info">
+  <main
+    class={resultados.length == 0
+      ? `grid justify-items-center gap-5 sm:grid-cols-filters grid-cols-1 h-[300px]`
+      : "grid justify-items-center gap-5 sm:grid-cols-filters grid-cols-1"}>
+    <aside class="mt-16 dark:bg-[#192a52] px-4 py-3 rounded-xl h-fit">
+      <h3 class="text-2xl">Filtros de busqueda</h3>
+      <section>
+        <ol>
+          <li>
+            <a
+              href=`/search?query=${request}`
+              class="dark:hover:bg-[#060f25] px-3">
+              Peliculas
+            </a>
+          </li>
+          <li>
+            <a
+              href=`/search?query=${request}&filter=tv`
+              class="dark:hover:bg-[#060f25] px-3">
+              Series
+            </a>
+          </li>
+          <li>
+            <a
+              href=`/search?query=${request}&filter=person`
+              class="dark:hover:bg-[#060f25] px-3">
+              Actores
+            </a>
+          </li>
+        </ol>
+      </section>
+    </aside>
+    <section>
+      <h2 class={"text-3xl text-center mb-8"}>{resultado}</h2>
+      <div
+        class={"grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center"}>
+        {
+          resultados.map((result) => (
+            <SearchComponent result={result} filter={filter} />
+          ))
+        }
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 100%;
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
 
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-		font-weight: bold;
-	}
-    a{
-        display: block;
-    }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+    font-weight: bold;
+  }
+  a {
+    display: block;
+  }
 </style>
