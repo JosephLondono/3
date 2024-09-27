@@ -1,64 +1,63 @@
 ---
 export const prerender = false;
 
-import PersonTarget from '../../components/person/personTarget.astro';
-import Layout from '../../layouts/Layout.astro';
-import { getPerson } from '../../services/api';
-import Numberpages from '../../components/Numberpages.astro';
+import PersonTarget from "../../components/person/personTarget.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getPerson } from "../../services/api";
+import Numberpages from "../../components/Numberpages.astro";
 
-
-let page = Astro.url.searchParams.get('page');
-(page == null) ? page = "1" : page = page;
+let page = Astro.url.searchParams.get("page");
+page == null ? (page = "1") : (page = page);
 console.log(page);
 
-if(parseInt(page) <= 0 || parseInt(page) > 500) return Astro.redirect('/404');
-
+if (parseInt(page) <= 0 || parseInt(page) > 500) return Astro.redirect("/404");
 
 const data = await getPerson(page);
 
 console.log(data);
-
-
-
 ---
 
-<Layout 
-title="Personas Populares | Movie Info" 
-description="Ver todas las personas populares"
-metaImage="https://i.ibb.co/GtDHZJ9/image.png"
-metaImageAlt="Pagina Principal de personas populares"
->
-	<main class= { "grid justify-items-center gap-5" }>
-		<h2 class={ "text-3xl" }>Personas</h2>
-		<section class={ "grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" }>
-			{	
-				data.map((person) => (
-					<PersonTarget name={ person.name } profile_path={ person.profile_path } id={person.id} movies={person.known_for}/>
-				))
-			}
-		</section>
-	</main>
+<Layout
+  title="Personas Populares | Movie Info"
+  description="Ver todas las personas populares"
+  metaImage="https://i.ibb.co/sPm3YYD/image.png"
+  metaImageAlt="Pagina Principal de personas populares">
+  <main class={"grid justify-items-center gap-5"}>
+    <h2 class={"text-3xl"}>Personas</h2>
+    <section
+      class={"grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"}>
+      {
+        data.map((person) => (
+          <PersonTarget
+            name={person.name}
+            profile_path={person.profile_path}
+            id={person.id}
+            movies={person.known_for}
+          />
+        ))
+      }
+    </section>
+  </main>
 
-	<Numberpages page={page} option='person'/>
-
+  <Numberpages page={page} option="person" />
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 100%;
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
 
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-		font-weight: bold;
-	}
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+    font-weight: bold;
+  }
 </style>

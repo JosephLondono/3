@@ -1,64 +1,66 @@
 ---
 export const prerender = false;
 
-import TvTarget from '../../components/tv/tvTarget.astro';
-import Layout from '../../layouts/Layout.astro';
-import { getTv } from '../../services/api';
-import Numberpages from '../../components/Numberpages.astro';
+import TvTarget from "../../components/tv/tvTarget.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getTv } from "../../services/api";
+import Numberpages from "../../components/Numberpages.astro";
 
-
-let page = Astro.url.searchParams.get('page');
-(page == null) ? page = "1" : page = page;
+let page = Astro.url.searchParams.get("page");
+page == null ? (page = "1") : (page = page);
 console.log(page);
 
-if(parseInt(page) <= 0 || parseInt(page) > 500) return Astro.redirect('/404');
-
+if (parseInt(page) <= 0 || parseInt(page) > 500) return Astro.redirect("/404");
 
 const data = await getTv(page);
 
 console.log(data);
 
 let option = "tv";
-
 ---
 
-<Layout 
-title="Series de Tv Populares | Movie Info" 
-description="Ver todas las series de Tv populares"
-metaImage="https://i.ibb.co/fN3RnDD/image.png"
-metaImageAlt="Pagina Principal de series populares"
->
-	<main class= { "grid justify-items-center gap-5" }>
-		<h2 class={ "text-3xl" }>Series Tv</h2>
-		<section class={ "grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" }>
-			{	
-				data.map((tv) => (
-					<TvTarget name={ tv.name } first_air_date={ tv.first_air_date } poster_path={tv.poster_path} adult={tv.adult} id={tv.id}/>
-				))
-			}
-		</section>
-	</main>
+<Layout
+  title="Series de Tv Populares | Movie Info"
+  description="Ver todas las series de Tv populares"
+  metaImage="https://i.ibb.co/w0Kc7NQ/image.png"
+  metaImageAlt="Pagina Principal de series populares">
+  <main class={"grid justify-items-center gap-5"}>
+    <h2 class={"text-3xl"}>Series Tv</h2>
+    <section
+      class={"grid gap-7 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"}>
+      {
+        data.map((tv) => (
+          <TvTarget
+            name={tv.name}
+            first_air_date={tv.first_air_date}
+            poster_path={tv.poster_path}
+            adult={tv.adult}
+            id={tv.id}
+          />
+        ))
+      }
+    </section>
+  </main>
 
-	<Numberpages page={page} option={option}/>
-
+  <Numberpages page={page} option={option} />
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 100%;
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
 
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-		font-weight: bold;
-	}
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+    font-weight: bold;
+  }
 </style>
