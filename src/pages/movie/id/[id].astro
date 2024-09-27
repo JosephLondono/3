@@ -9,7 +9,7 @@ export const prerender = false;
 
 const { id } = Astro.params;
 
-const data = await getMovieById(id)(id);
+const data = await getMovieById(id);
 ---
 
 <Layout
