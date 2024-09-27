@@ -1,49 +1,49 @@
 ---
-
 interface Props {
-	title: string;
-    date: string;
-    poster_path: string;
-    adult: string;
-    id: string;
+  title: string;
+  date: string;
+  poster_path: string;
+  adult: string;
+  id: string;
 }
 
 const { title, date, poster_path, adult, id } = Astro.props;
-
-
 ---
 
 <div
-class={ "grid grid-rows-2 rounded-xl w-48 tarjeta dark:bg-[#061b55] text-black bg-slate-400/50" }
->
-    <a href=`/movie/id/${id}` class={ (poster_path) ? `grid` : `grid content-center dark:bg-[#172d69] rounded-xl` }>
-        <img src={ (poster_path) ? `https://image.tmdb.org/t/p/w300/${poster_path}` : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg" } alt={title} class={ "rounded-xl" }>
-        
+  class={"grid grid-rows-2 rounded-xl w-48 tarjeta dark:bg-[#061b55] text-black bg-slate-400/50 h-[413px]"}>
+  <a
+    href=`/movie/id/${id}`
+    class={`max-h-[280px] ${poster_path ? "grid" : `grid content-center bg-[#172d69] rounded-xl`} `}>
+    <img
+      src={poster_path
+        ? `https://image.tmdb.org/t/p/w300/${poster_path}`
+        : "https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg"}
+      alt={title}
+      class={"rounded-xl max-h-[280px] w-full object-cover"}
+    />
+  </a>
+
+  <div class={"flex flex-col px-2 py-3"}>
+    <a
+      href=`/movie/id/${id}`
+      class="w-full h-fit text-lg dark:text-white font-medium">
+      {title}
     </a>
-
-    <div class={ "flex flex-col px-2 py-3" }>
-        <a href=`/movie/id/${id}` class="w-full h-fit text-lg dark:text-white font-medium">
-            {title}
-        </a>
-        <p class="h-fit flex justify-between text-sm">
-            <span class="dark:text-white/55 font-semibold text-black/55">
-                {date}
-            </span>
-            <span>
-                { (adult) ? "🔞" : ""}
-            </span>
-
-        </p>
-    </div>
-
-    
+    <p class="h-fit flex justify-between text-sm">
+      <span class="dark:text-white/55 font-semibold text-black/55">
+        {date}
+      </span>
+      <span>
+        {adult ? "🔞" : ""}
+      </span>
+    </p>
+  </div>
 </div>
-    
-<style>
-    .tarjeta {
-        display: grid;
-        grid-template-rows: 281px auto;
-    }
-    
 
+<style>
+  .tarjeta {
+    display: grid;
+    grid-template-rows: 281px auto;
+  }
 </style>
